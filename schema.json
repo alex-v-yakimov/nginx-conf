@@ -1,0 +1,326 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://example.com/root.json",
+  "type": "object",
+  "title": "The Root Schema",
+  "required": [
+    "user",
+    "worker_processes",
+    "error_log",
+    "pid",
+    "events",
+    "http"
+  ],
+  "properties": {
+    "user": {
+      "$id": "#/properties/user",
+      "type": "string",
+      "title": "The User Schema",
+      "pattern": "^(.*)$"
+    },
+    "worker_processes": {
+      "$id": "#/properties/worker_processes",
+      "type": "string",
+      "title": "The Worker_processes Schema",
+      "pattern": "^(.*)$"
+    },
+    "error_log": {
+      "$id": "#/properties/error_log",
+      "type": "object",
+      "title": "The Error_log Schema",
+      "required": [
+        "file",
+        "level"
+      ],
+      "properties": {
+        "file": {
+          "$id": "#/properties/error_log/properties/file",
+          "type": "string",
+          "title": "The File Schema",
+          "pattern": "^(.*)$"
+        },
+        "level": {
+          "$id": "#/properties/error_log/properties/level",
+          "type": "string",
+          "title": "The Level Schema",
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "pid": {
+      "$id": "#/properties/pid",
+      "type": "string",
+      "title": "The Pid Schema",
+      "pattern": "^(.*)$"
+    },
+    "events": {
+      "$id": "#/properties/events",
+      "type": "object",
+      "title": "The Events Schema",
+      "required": [
+        "worker_connections"
+      ],
+      "properties": {
+        "worker_connections": {
+          "$id": "#/properties/events/properties/worker_connections",
+          "type": "string",
+          "title": "The Worker_connections Schema",
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    "http": {
+      "$id": "#/properties/http",
+      "type": "object",
+      "title": "The Http Schema",
+      "required": [
+        "include",
+        "default_type",
+        "log_format",
+        "access_log",
+        "upstream",
+        "server"
+      ],
+      "properties": {
+        "include": {
+          "$id": "#/properties/http/properties/include",
+          "type": "string",
+          "title": "The Include Schema",
+          "pattern": "^(.*)$"
+        },
+        "default_type": {
+          "$id": "#/properties/http/properties/default_type",
+          "type": "string",
+          "title": "The Default_type Schema",
+          "pattern": "^(.*)$"
+        },
+        "log_format": {
+          "$id": "#/properties/http/properties/log_format",
+          "type": "object",
+          "title": "The Log_format Schema",
+          "required": [
+            "name",
+            "string"
+          ],
+          "properties": {
+            "name": {
+              "$id": "#/properties/http/properties/log_format/properties/name",
+              "type": "string",
+              "title": "The Name Schema",
+              "pattern": "^(.*)$"
+            },
+            "string": {
+              "$id": "#/properties/http/properties/log_format/properties/string",
+              "type": "string",
+              "title": "The String Schema",
+              "pattern": "^(.*)$"
+            }
+          }
+        },
+        "access_log": {
+          "$id": "#/properties/http/properties/access_log",
+          "type": "object",
+          "title": "The Access_log Schema",
+          "required": [
+            "file",
+            "name"
+          ],
+          "properties": {
+            "file": {
+              "$id": "#/properties/http/properties/access_log/properties/file",
+              "type": "string",
+              "title": "The File Schema",
+              "pattern": "^(.*)$"
+            },
+            "name": {
+              "$id": "#/properties/http/properties/access_log/properties/name",
+              "type": "string",
+              "title": "The Name Schema",
+              "pattern": "^(.*)$"
+            }
+          }
+        },
+        "upstream": {
+          "$id": "#/properties/http/properties/upstream",
+          "type": "array",
+          "title": "The Upstream Schema",
+          "items": {
+            "$id": "#/properties/http/properties/upstream/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "name",
+              "server",
+              "keepalive"
+            ],
+            "properties": {
+              "name": {
+                "$id": "#/properties/http/properties/upstream/items/properties/name",
+                "type": "string",
+                "title": "The Name Schema",
+                "pattern": "^(.*)$"
+              },
+              "server": {
+                "$id": "#/properties/http/properties/upstream/items/properties/server",
+                "type": "array",
+                "title": "The Server Schema",
+                "items": {
+                  "$id": "#/properties/http/properties/upstream/items/properties/server/items",
+                  "type": "object",
+                  "title": "The Items Schema",
+                  "required": [
+                    "address",
+                    "parameters"
+                  ],
+                  "properties": {
+                    "address": {
+                      "$id": "#/properties/http/properties/upstream/items/properties/server/items/properties/address",
+                      "type": "string",
+                      "title": "The Address Schema",
+                      "pattern": "^(.*)$"
+                    },
+                    "parameters": {
+                      "$id": "#/properties/http/properties/upstream/items/properties/server/items/properties/parameters",
+                      "type": "array",
+                      "title": "The Parameters Schema",
+                      "items": {
+                        "$id": "#/properties/http/properties/upstream/items/properties/server/items/properties/parameters/items",
+                        "type": "string",
+                        "title": "The Items Schema",
+                        "pattern": "^(.*)$"
+                      }
+                    }
+                  }
+                }
+              },
+              "keepalive": {
+                "$id": "#/properties/http/properties/upstream/items/properties/keepalive",
+                "type": "string",
+                "title": "The Keepalive Schema",
+                "pattern": "^(.*)$"
+              }
+            }
+          }
+        },
+        "server": {
+          "$id": "#/properties/http/properties/server",
+          "type": "array",
+          "title": "The Server Schema",
+          "items": {
+            "$id": "#/properties/http/properties/server/items",
+            "type": "object",
+            "title": "The Items Schema",
+            "required": [
+              "listen",
+              "server_name",
+              "location"
+            ],
+            "properties": {
+              "listen": {
+                "$id": "#/properties/http/properties/server/items/properties/listen",
+                "type": "string",
+                "title": "The Listen Schema",
+                "pattern": "^(.*)$"
+              },
+              "server_name": {
+                "$id": "#/properties/http/properties/server/items/properties/server_name",
+                "type": "string",
+                "title": "The Server_name Schema",
+                "pattern": "^(.*)$"
+              },
+              "location": {
+                "$id": "#/properties/http/properties/server/items/properties/location",
+                "type": "array",
+                "title": "The Location Schema",
+                "items": {
+                  "$id": "#/properties/http/properties/server/items/properties/location/items",
+                  "type": "object",
+                  "title": "The Items Schema",
+                  "required": [
+                    "modifier",
+                    "URI",
+                    "configuration"
+                  ],
+                  "properties": {
+                    "modifier": {
+                      "$id": "#/properties/http/properties/server/items/properties/location/items/properties/modifier",
+                      "type": "string",
+                      "title": "The Modifier Schema",
+                      "pattern": "^(.*)$"
+                    },
+                    "URI": {
+                      "$id": "#/properties/http/properties/server/items/properties/location/items/properties/URI",
+                      "type": "string",
+                      "title": "The Uri Schema",
+                      "pattern": "^(.*)$"
+                    },
+                    "configuration": {
+                      "$id": "#/properties/http/properties/server/items/properties/location/items/properties/configuration",
+                      "type": "object",
+                      "title": "The Configuration Schema",
+                      "properties": {
+                        "proxy_http_version": {
+                          "$id": "#/properties/http/properties/server/items/properties/location/items/properties/configuration/properties/proxy_http_version",
+                          "type": "string",
+                          "title": "The Proxy_http_version Schema",
+                          "pattern": "^(.*)$"
+                        },
+                        "proxy_set_header": {
+                          "$id": "#/properties/http/properties/server/items/properties/location/items/properties/configuration/properties/proxy_set_header",
+                          "type": "array",
+                          "title": "The Proxy_set_header Schema",
+                          "items": {
+                            "$id": "#/properties/http/properties/server/items/properties/location/items/properties/configuration/properties/proxy_set_header/items",
+                            "type": "object",
+                            "title": "The Items Schema",
+                            "required": [
+                              "field",
+                              "value"
+                            ],
+                            "properties": {
+                              "field": {
+                                "$id": "#/properties/http/properties/server/items/properties/location/items/properties/configuration/properties/proxy_set_header/items/properties/field",
+                                "type": "string",
+                                "title": "The Field Schema",
+                                "pattern": "^(.*)$"
+                              },
+                              "value": {
+                                "$id": "#/properties/http/properties/server/items/properties/location/items/properties/configuration/properties/proxy_set_header/items/properties/value",
+                                "type": "string",
+                                "title": "The Value Schema",
+                                "pattern": "^(.*)$"
+                              }
+                            }
+                          }
+                        },
+                        "proxy_connect_timeout": {
+                          "$id": "#/properties/http/properties/server/items/properties/location/items/properties/configuration/properties/proxy_connect_timeout",
+                          "type": "string",
+                          "title": "The Proxy_connect_timeout Schema",
+                          "pattern": "^(.*)$"
+                        },
+                        "proxy_read_timeout": {
+                          "$id": "#/properties/http/properties/server/items/properties/location/items/properties/configuration/properties/proxy_read_timeout",
+                          "type": "string",
+                          "title": "The Proxy_read_timeout Schema",
+                          "pattern": "^(.*)$"
+                        },
+                        "proxy_pass": {
+                          "$id": "#/properties/http/properties/server/items/properties/location/items/properties/configuration/properties/proxy_pass",
+                          "type": "string",
+                          "title": "The Proxy_pass Schema",
+                          "pattern": "^(.*)$"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "user": "www-data",
+  "worker_processes": "auto",
+  "error_log": {
+    "file": "/var/log/nginx/error.log",
+    "level": "warn"
+  },
+  "pid": "/var/run/nginx.pid",
+  "events": {
+    "worker_connections": "1024"
+  },
+  "http": {
+    "include": "/etc/nginx/mime.types",
+    "default_type": "application/octet-stream",
+    "log_format": {
+      "name": "main",
+      "string": "$remote_addr - $remote_user [$time_local] \"$request\" $status $body_bytes_sent \"$http_referer\" \"$http_user_agent\" \"$http_x_forwarded_for\""
+    },
+    "access_log": {
+      "file": "/var/log/nginx/access.log",
+      "name": "main"
+    },
+    "upstream": [
+      {
+        "name": "upstream-root",
+        "server": [
+          {
+            "address": "server1:80",
+            "parameters": [
+              "max_fails=0"
+            ]
+          },
+          {
+            "address": "server2:80",
+            "parameters": []
+          }
+        ],
+        "keepalive": "10"
+      },
+      {
+        "name": "upstream-images",
+        "server": [
+          {
+            "address": "server-images1:80",
+            "parameters": []
+          },
+          {
+            "address": "server-images2:80",
+            "parameters": []
+          },
+          {
+            "address": "server-images3:80",
+            "parameters": []
+          }
+        ],
+        "keepalive": ""
+      }
+    ],
+    "server": [
+      {
+        "listen": "80",
+        "server_name": "example.com",
+        "extra": [ "noindex" ],
+        "location": [
+          {
+            "modifier": "",
+            "URI": "/",
+            "configuration": {
+              "proxy_http_version": "1.1",
+              "proxy_set_header": [
+                {
+                  "field": "Connection",
+                  "value": ""
+                },
+                {
+                  "field": "Host",
+                  "value": "$host"
+                }
+              ],
+              "proxy_connect_timeout": "200s",
+              "proxy_read_timeout": "120s",
+              "proxy_pass": "http://upstream-root"
+            }
+          },
+          {
+            "modifier": "^~",
+            "URI": "/images/",
+            "configuration": {
+              "proxy_connect_timeout": "100ms",
+              "proxy_read_timeout": "5s",
+              "proxy_set_header": [
+                {
+                  "field": "Host",
+                  "value": "$host"
+                }
+              ],
+              "proxy_pass": "http://upstream-images"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
